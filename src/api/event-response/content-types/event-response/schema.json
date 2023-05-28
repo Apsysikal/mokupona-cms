@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "event_responses",
+  "info": {
+    "singularName": "event-response",
+    "pluralName": "event-responses",
+    "displayName": "Event Response",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "restriction_vegetarian": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "restriction_vegan": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "restriction_nuts": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "restriction_dairy": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "restriction_alcohol": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "restriction_other": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "termsOfService": {
+      "type": "boolean",
+      "required": true
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "event_responses"
+    },
+    "confirm_token": {
+      "type": "string",
+      "unique": true
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "waiting",
+        "invite_sent",
+        "invite_confirmed",
+        "invite_cancelled"
+      ],
+      "default": "waiting",
+      "required": true
+    },
+    "invite_date": {
+      "type": "datetime"
+    }
+  }
+}
