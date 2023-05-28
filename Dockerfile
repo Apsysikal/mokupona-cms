@@ -5,11 +5,11 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt/
-ADD package.json package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm install --only=production
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
-ADD . .
+COPY . .
 RUN npm run build
 
 # Creating final production image
@@ -18,9 +18,9 @@ RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
-ADD --from=build /opt/node_modules ./node_modules
+COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
-ADD --from=build /opt/app ./
+COPY --from=build /opt/app ./
 ENV PATH /opt/node_modules/.bin:$PATH
 
 RUN chown -R node:node /opt/app
