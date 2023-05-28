@@ -1,32 +1,29 @@
-# Dockerfile
-FROM node:18
-
-# Installing libvips-dev for sharp Compatability
-RUN apt-get update && apt-get install libvips-dev -y
-
-# Set environment to production
-ENV NODE_ENV=production
-
-# Copy the configuration files
+# Creating multi-stage build for production
+FROM node:18-alpine as build
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt/
+ADD package.json package-lock.json ./
+RUN npm install --only=production
+ENV PATH /opt/node_modules/.bin:$PATH
+WORKDIR /opt/app
+ADD . .
+RUN npm run build
 
-ADD ./package.json ./package-lock.json ./
-
+# Creating final production image
+FROM node:18-alpine
+RUN apk add --no-cache vips-dev
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /opt/
+ADD --from=build /opt/node_modules ./node_modules
+WORKDIR /opt/app
+ADD --from=build /opt/app ./
 ENV PATH /opt/node_modules/.bin:$PATH
 
-# Install dependencies
-RUN npm install
-
-# Copy the application files
-
-WORKDIR /opt/app
-
-ADD ./ .
-
-# Build the Strapi application
-RUN npm run build
-# Expose the Strapi port
+RUN chown -R node:node /opt/app
+USER node
 EXPOSE 1337
-# Start the Strapi application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
