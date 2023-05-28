@@ -22,7 +22,7 @@ export default ({ env }) => ({
       providerOptions: {
         provider: "local",
         providerOptions: {
-          maxSize: 100000,
+          sizeLimit: 100000,
         },
       },
     },
