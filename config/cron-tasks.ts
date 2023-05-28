@@ -55,7 +55,7 @@ export default {
           const token = generateToken();
           const host =
             process.env.NODE_ENV === "production"
-              ? "https://www.mokupona.com"
+              ? "https://mokupona.ch"
               : "http://localhost:3000";
           const query = new URLSearchParams({ id: String(id), email, token });
           const link = `${host}/dinners/${event.id}/confirm?${query}`;

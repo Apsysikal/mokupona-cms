@@ -5,7 +5,9 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[env]
+[mounts]
+  source="uploads"
+  destination="/public/uploads"
 
 [experimental]
   auto_rollback = true
