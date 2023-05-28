@@ -6,8 +6,8 @@ kill_timeout = 5
 processes = []
 
 [mounts]
-  source="uploads"
-  destination="/public/uploads"
+  source = "uploads"
+  destination = "/public"
 
 [experimental]
   auto_rollback = true
