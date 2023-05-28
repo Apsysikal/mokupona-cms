@@ -7,7 +7,7 @@ processes = []
 
 [mounts]
   source = "uploads"
-  destination = "/public"
+  destination = "/opt/app/public/uploads"
 
 [experimental]
   auto_rollback = true
