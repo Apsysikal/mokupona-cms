@@ -56,6 +56,10 @@ jobs:
           build-args: |
             COMMIT_SHA=${{ github.sha }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
+            APP_KEYS=${{ secrets.APP_KEYS }}
+            API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}
+            ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
 
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
