@@ -20,8 +20,9 @@ export default ({ env }) => ({
   upload: {
     config: {
       providerOptions: {
-        localServer: {
-          maxage: 300000,
+        provider: "local",
+        providerOptions: {
+          maxSize: 100000,
         },
       },
     },
