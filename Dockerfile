@@ -14,7 +14,7 @@ RUN npm install
 WORKDIR /opt/app
 COPY ./ .
 # Build the Strapi application
-RUN yarn build
+RUN npm run build
 # Expose the Strapi port
 EXPOSE 1337
 # Start the Strapi application
