@@ -3,6 +3,8 @@ FROM node:18-alpine as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
 
 WORKDIR /opt/
 COPY package.json package-lock.json ./
