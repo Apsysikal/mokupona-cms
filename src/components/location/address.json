@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_location_addresses",
+  "info": {
+    "displayName": "Address",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string",
+      "required": true
+    },
+    "number": {
+      "type": "string"
+    },
+    "zipcode": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    }
+  }
+}

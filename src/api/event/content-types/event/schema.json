@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "Event"
+    "displayName": "Event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -48,27 +49,25 @@
       "min": 0,
       "required": true
     },
-    "locationStreet": {
-      "type": "string",
-      "required": true
-    },
-    "locationCity": {
-      "type": "string",
-      "required": true
-    },
     "cover": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "event_responses": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::event-response.event-response",
       "mappedBy": "event"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "location.address",
+      "required": true
     }
   }
 }

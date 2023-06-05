@@ -13,7 +13,7 @@
       "name": "",
       "url": ""
     },
-    "x-generation-date": "2023-05-29T15:16:58.901Z"
+    "x-generation-date": "2023-06-05T19:16:23.415Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -89,9 +89,8 @@
               "signupDate",
               "slots",
               "price",
-              "locationStreet",
-              "locationCity",
-              "cover"
+              "cover",
+              "address"
             ],
             "type": "object",
             "properties": {
@@ -124,12 +123,6 @@
               "price": {
                 "type": "integer"
               },
-              "locationStreet": {
-                "type": "string"
-              },
-              "locationCity": {
-                "type": "string"
-              },
               "cover": {
                 "oneOf": [
                   {
@@ -154,6 +147,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "address": {
+                "$ref": "#/components/schemas/LocationAddressComponent"
               }
             }
           }
@@ -216,9 +212,8 @@
           "signupDate",
           "slots",
           "price",
-          "locationStreet",
-          "locationCity",
-          "cover"
+          "cover",
+          "address"
         ],
         "properties": {
           "title": {
@@ -249,12 +244,6 @@
           },
           "price": {
             "type": "integer"
-          },
-          "locationStreet": {
-            "type": "string"
-          },
-          "locationCity": {
-            "type": "string"
           },
           "cover": {
             "type": "object",
@@ -963,12 +952,6 @@
                                     "price": {
                                       "type": "integer"
                                     },
-                                    "locationStreet": {
-                                      "type": "string"
-                                    },
-                                    "locationCity": {
-                                      "type": "string"
-                                    },
                                     "cover": {
                                       "type": "object",
                                       "properties": {
@@ -1128,6 +1111,26 @@
                                         }
                                       }
                                     },
+                                    "address": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "street": {
+                                          "type": "string"
+                                        },
+                                        "number": {
+                                          "type": "string"
+                                        },
+                                        "zipcode": {
+                                          "type": "string"
+                                        },
+                                        "city": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -1244,6 +1247,9 @@
                 }
               }
             }
+          },
+          "address": {
+            "$ref": "#/components/schemas/LocationAddressComponent"
           },
           "createdAt": {
             "type": "string",
@@ -1389,12 +1395,6 @@
                       },
                       "price": {
                         "type": "integer"
-                      },
-                      "locationStreet": {
-                        "type": "string"
-                      },
-                      "locationCity": {
-                        "type": "string"
                       },
                       "cover": {
                         "type": "object",
@@ -2144,6 +2144,26 @@
                           }
                         }
                       },
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "street": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "string"
+                          },
+                          "zipcode": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          }
+                        }
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -2253,6 +2273,26 @@
                 }
               }
             }
+          }
+        }
+      },
+      "LocationAddressComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "street": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
           }
         }
       },
