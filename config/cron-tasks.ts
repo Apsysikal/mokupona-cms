@@ -53,10 +53,7 @@ export default {
         );
         waitingInvitations.forEach(async ({ id, name, email }) => {
           const token = generateToken();
-          const host =
-            process.env.NODE_ENV === "production"
-              ? "https://mokupona.ch"
-              : "http://localhost:3000";
+          const host = process.env.FRONTEND_URL || "http://localhost:3000";
           const query = new URLSearchParams({ id: String(id), email, token });
           const link = `${host}/dinners/${event.id}/confirm?${query}`;
           await sendEmailTemplate(
