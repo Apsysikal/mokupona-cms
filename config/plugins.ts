@@ -27,35 +27,4 @@ export default ({ env }) => ({
       },
     },
   },
-  documentation: {
-    config: {
-      info: {
-        version: "0.1.0",
-        title: "The mokupona api documentation",
-        description: "",
-        termsOfService: "",
-        contact: {
-          name: "",
-          email: "",
-          url: "",
-        },
-        license: {
-          name: "",
-          url: "",
-        },
-      },
-      "x-strapi-config": {
-        path: "/documentation",
-        plugins: [],
-        mutateDocumentation: null,
-      },
-      servers: [],
-      externalDocs: null,
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
-    },
-  },
 });
