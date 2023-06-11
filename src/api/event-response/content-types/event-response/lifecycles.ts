@@ -1,3 +1,4 @@
+import ApplicationError from "@strapi/utils";
 import { format } from "date-fns";
 import { sendEmailTemplate } from "../../../../../config/email";
 
@@ -12,7 +13,7 @@ export default {
     });
 
     if (response.length) {
-      throw new Error(
+      throw new ApplicationError(
         "EventResponse using this email for this event already exists"
       );
     }
@@ -110,7 +111,7 @@ function getQueryParamsFromData(data: any) {
     eventId = data.event;
   }
 
-  if (!eventId) throw new Error("Event id must be provided");
+  if (!eventId) throw new ApplicationError("Event id must be provided");
 
   return {
     email: data.email,
