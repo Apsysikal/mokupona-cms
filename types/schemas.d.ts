@@ -19,6 +19,8 @@ import {
   SetMinMax,
   TextAttribute,
   MediaAttribute,
+  ComponentAttribute,
+  ComponentSchema,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -264,6 +266,108 @@ export interface AdminApiTokenPermission extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'admin::api-token-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface AdminTransferToken extends CollectionTypeSchema {
+  info: {
+    name: 'Transfer Token';
+    singularName: 'transfer-token';
+    pluralName: 'transfer-tokens';
+    displayName: 'Transfer Token';
+    description: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: StringAttribute &
+      RequiredAttribute &
+      UniqueAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    description: StringAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      DefaultTo<''>;
+    accessKey: StringAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    lastUsedAt: DateTimeAttribute;
+    permissions: RelationAttribute<
+      'admin::transfer-token',
+      'oneToMany',
+      'admin::transfer-token-permission'
+    >;
+    expiresAt: DateTimeAttribute;
+    lifespan: BigIntegerAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'admin::transfer-token',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'admin::transfer-token',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface AdminTransferTokenPermission extends CollectionTypeSchema {
+  info: {
+    name: 'Transfer Token Permission';
+    description: '';
+    singularName: 'transfer-token-permission';
+    pluralName: 'transfer-token-permissions';
+    displayName: 'Transfer Token Permission';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: StringAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    token: RelationAttribute<
+      'admin::transfer-token-permission',
+      'manyToOne',
+      'admin::transfer-token'
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'admin::transfer-token-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'admin::transfer-token-permission',
       'oneToOne',
       'admin::user'
     > &
@@ -584,6 +688,7 @@ export interface ApiEventEvent extends CollectionTypeSchema {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -606,14 +711,13 @@ export interface ApiEventEvent extends CollectionTypeSchema {
       SetMinMax<{
         min: 0;
       }>;
-    locationStreet: StringAttribute & RequiredAttribute;
-    locationCity: StringAttribute & RequiredAttribute;
     cover: MediaAttribute & RequiredAttribute;
     event_responses: RelationAttribute<
       'api::event.event',
       'oneToMany',
       'api::event-response.event-response'
     >;
+    address: ComponentAttribute<'location.address'> & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -686,6 +790,19 @@ export interface ApiEventResponseEventResponse extends CollectionTypeSchema {
   };
 }
 
+export interface LocationAddress extends ComponentSchema {
+  info: {
+    displayName: 'Address';
+    description: '';
+  };
+  attributes: {
+    street: StringAttribute & RequiredAttribute;
+    number: StringAttribute;
+    zipcode: StringAttribute;
+    city: StringAttribute;
+  };
+}
+
 declare global {
   namespace Strapi {
     interface Schemas {
@@ -694,6 +811,8 @@ declare global {
       'admin::role': AdminRole;
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
+      'admin::transfer-token': AdminTransferToken;
+      'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -702,6 +821,7 @@ declare global {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::event.event': ApiEventEvent;
       'api::event-response.event-response': ApiEventResponseEventResponse;
+      'location.address': LocationAddress;
     }
   }
 }
