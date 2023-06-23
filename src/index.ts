@@ -1,3 +1,5 @@
+import { createEvent } from "./utils/event";
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -42,6 +44,8 @@ module.exports = {
         isActive: true,
         roles: [adminRole.id],
       });
+
+      await createEvent(strapi);
     }
   },
 };

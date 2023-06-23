@@ -14,10 +14,12 @@
       "type": "string"
     },
     "zipcode": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
