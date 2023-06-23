@@ -6,9 +6,10 @@
   "scripts": {
     "develop": "strapi develop && cp ./",
     "start": "strapi start",
-    "build": "strapi build && npm run setup-templates",
+    "build": "strapi build && npm run setup-templates && npm run generate-types",
     "strapi": "strapi",
-    "setup-templates": "cp -r ./config/templates ./dist/config/"
+    "setup-templates": "cp -r ./config/templates ./dist/config/",
+    "generate-types": "strapi ts:generate-types --out ./types/schema.d.ts"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.11.0",
