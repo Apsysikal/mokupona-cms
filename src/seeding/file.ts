@@ -24,8 +24,8 @@ async function fetchFile(url: string) {
 export async function createImage(strapi: Strapi.Strapi) {
   const config = strapi.config.get("plugin.upload");
   const url = faker.image.urlLoremFlickr({
-    width: 1920,
-    height: 1080,
+    width: 1280,
+    height: 720,
     category: "food",
   });
   const image = await fetchFile(url);
