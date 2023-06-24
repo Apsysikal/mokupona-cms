@@ -798,8 +798,8 @@ export interface LocationAddress extends ComponentSchema {
   attributes: {
     street: StringAttribute & RequiredAttribute;
     number: StringAttribute;
-    zipcode: StringAttribute;
-    city: StringAttribute;
+    zipcode: StringAttribute & RequiredAttribute;
+    city: StringAttribute & RequiredAttribute;
   };
 }
 

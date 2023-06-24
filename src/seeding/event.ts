@@ -17,7 +17,7 @@ export async function createEvent(strapi: Strapi.Strapi) {
       zipcode: faker.location.zipCode("####"),
       city: faker.location.city(),
     },
-    cover: [],
+    cover: [1],
     event_responses: [],
   };
 

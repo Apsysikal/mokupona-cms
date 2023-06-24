@@ -1,5 +1,5 @@
-import { createEvent } from "./utils/event";
-import { createImage } from "./utils/file";
+import { createEvent } from "./seeding/event";
+import { createImage } from "./seeding/file";
 
 module.exports = {
   /**
@@ -46,13 +46,13 @@ module.exports = {
         roles: [adminRole.id],
       });
 
-      await createEvent(strapi);
       await Promise.all([
         createImage(strapi),
         createImage(strapi),
         createImage(strapi),
         createImage(strapi),
       ]);
+      await createEvent(strapi);
     }
   },
 };

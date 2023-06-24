@@ -9,7 +9,7 @@
     "build": "strapi build && npm run setup-templates && npm run generate-types",
     "strapi": "strapi",
     "setup-templates": "cp -r ./config/templates ./dist/config/",
-    "generate-types": "strapi ts:generate-types --out ./types/schema.d.ts"
+    "generate-types": "strapi ts:generate-types -o ./types"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.11.0",
@@ -20,7 +20,9 @@
     "date-fns": "^2.29.3",
     "pg": "^8.9.0",
     "pg-connection-string": "^2.5.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "axios": "^1.4.0",
+    "@faker-js/faker": "^8.0.2"
   },
   "author": {
     "name": "Benedikt Schniepp"
@@ -34,9 +36,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
     "@types/uuid": "^9.0.1",
-    "axios": "^1.4.0",
     "better-sqlite3": "^8.4.0"
   }
 }
