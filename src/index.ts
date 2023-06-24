@@ -1,4 +1,5 @@
 import { createEvent } from "./utils/event";
+import { createImage } from "./utils/file";
 
 module.exports = {
   /**
@@ -46,6 +47,12 @@ module.exports = {
       });
 
       await createEvent(strapi);
+      await Promise.all([
+        createImage(strapi),
+        createImage(strapi),
+        createImage(strapi),
+        createImage(strapi),
+      ]);
     }
   },
 };

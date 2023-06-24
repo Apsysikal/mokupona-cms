@@ -1,12 +1,24 @@
 import path from "path";
 
 // ./config/env/development/database.ts
-export default ({ env }) => ({
-  connection: {
-    client: "sqlite",
+export default ({ env }) => {
+  const dbPath = path.join(
+    __dirname,
+    "..",
+    "..",
+    "..",
+    "..",
+    ".tmp",
+    "data.db"
+  );
+
+  return {
     connection: {
-      filename: path.join(__dirname, "..", "..", "..", ".tmp", "data.db"),
+      client: "sqlite",
+      connection: {
+        filename: dbPath,
+      },
+      useNullAsDefault: true,
     },
-    useNullAsDefault: true,
-  },
-});
+  };
+};
