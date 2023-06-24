@@ -9,7 +9,7 @@
     "build": "strapi build && npm run setup-templates && npm run generate-types",
     "strapi": "strapi",
     "setup-templates": "cp -r ./config/templates ./dist/config/",
-    "generate-types": "strapi ts:generate-types -o ./types"
+    "generate-types": "strapi ts:generate-types"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.11.2",

@@ -1,6 +1,6 @@
 import type { Strapi } from "@strapi/strapi";
+import type { ApiEventResponseEventResponse } from "../types/generated/contentTypes";
 import { addDays, isAfter } from "date-fns";
-import type { ApiEventResponseEventResponse } from "../types/schemas";
 import "./email";
 import { sendEmailTemplate } from "./email";
 import { v4 as uuid } from "uuid";

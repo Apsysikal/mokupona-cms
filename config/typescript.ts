@@ -1,3 +1,3 @@
 export default ({ env }) => ({
-  autogenerate: false,
+  autogenerate: true,
 });
